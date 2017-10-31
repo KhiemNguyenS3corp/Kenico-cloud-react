@@ -21,8 +21,8 @@ ReactDOM.render((
   <Router  history={browserHistory} render={applyRouterMiddleware(useScroll())}>
     <Route path="/" component={App}>
       <IndexRoute component={HomePage} />
-      <Route path="about" component={AboutPage} />
-      <Route path="cafes" component={CafesPage} />
+      <Route path="about-us" component={AboutPage} />
+      <Route path="cafe" component={CafesPage} />
       <Route path="articles" component={ArticlesPage} />
       <Route path="articles/:articleSlug" component={ArticlePage} />
       <Route path="store" component={StorePage}>

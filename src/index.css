@@ -6141,3 +6141,6 @@ footer {
     background-color: transparent;
     color: #fff;
 }
+.fRight{
+    float: right
+}

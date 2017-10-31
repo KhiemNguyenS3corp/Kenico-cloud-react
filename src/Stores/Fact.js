@@ -14,11 +14,11 @@ let fetchFacts = () => {
   if (initialized) {
     return;
   }
-
+  const cloudLanguage =localStorage.getItem('cloudLanguage') || 'en-US';
   Client.item('about_us')
+    .languageParameter(cloudLanguage)
     .get()
     .subscribe(response => {
-      debugger
       facts = response.item.facts;
       notifyChange(); 
       initialized = true;

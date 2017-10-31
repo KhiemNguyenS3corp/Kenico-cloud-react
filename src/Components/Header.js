@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { Link, IndexLink } from 'react-router'
 import { LogAboutUs } from '../Utilities/ActivityLogging'
+import { browserHistory} from 'react-router'
 import Navigation from '../Stores/Navigation';
 
 let getState = () => {
   return {
     navItems: Navigation.getNavitaionItems()
+   
   };
 };
 
@@ -20,10 +22,32 @@ class Header extends Component {
   componentDidMount() {
     Navigation.addChangeListener(this.onChange);
     Navigation.provideNavigationItems();
+    
   }
 
   onChange() {
     this.setState(getState());
+  }
+  _changeLanguage(){
+   
+    var language=localStorage.getItem('language') || 'en';
+    switch (language){
+      case 'en':
+      
+        localStorage.setItem('language', 'cn');
+        localStorage.setItem('cloudLanguage', 'cn-CN');
+        break;
+      case 'cn':
+     
+        localStorage.setItem('language', 'en');
+        localStorage.setItem('cloudLanguage', 'en-US');
+        break;
+    }
+
+    this.setState({});
+    //browserHistory.push('/')
+    location.reload();
+   
   }
   
   render() {
@@ -35,11 +59,12 @@ class Header extends Component {
               <ul>
                 {
                   this.state.navItems.map(item =>{
-                    return  <li><Link to={'/'+item.redirectToUrl.text}>{item.title.value}</Link> </li>
+                    return  <li><Link to={'/'+item.urlSlug.value} key={item.system.id}>{item.title.value}</Link> </li>
                   })
                 }
               </ul>
             </nav>
+            <span className='fRight'><button onClick={this._changeLanguage.bind(this)}>Language</button></span>
           </div>
         </div>
         <div className="header-row">

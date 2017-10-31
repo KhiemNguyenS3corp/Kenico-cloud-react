@@ -38,9 +38,10 @@ class ArticleStore {
     }
 
     articleListCapacity = count;
-
+    const cloudLanguage =localStorage.getItem('cloudLanguage') || 'en-US';
     Client.items()
-      .type('article')         
+      .type('article')   
+      .languageParameter(cloudLanguage)      
       .get()
       .subscribe(response =>
         {

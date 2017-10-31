@@ -2,7 +2,7 @@ import Client from "../Client.js";
 
 let changeListeners = [];
 let initialized = false;
-let navItems = [];
+let heroUnit = [];
 
 let notifyChange = () => {
     changeListeners.forEach((listener) => {
@@ -18,28 +18,28 @@ let fetchFacts = () => {
     const cloudLanguage =localStorage.getItem('cloudLanguage') || 'en-US';
    
     Client.items()
-        .type('navigation_items')
+        .type('hero_unit')
         .languageParameter(cloudLanguage)
         .get()
         .subscribe(response => {
-            navItems = response.items;
+            heroUnit = response.items;
             notifyChange();
             initialized = true;
         });
 }
 
-class NavigationStore {
+class HeroStore {
 
     // Actions
 
-    provideNavigationItems() {
+    provideHeroUnit() {
         fetchFacts();
     }
 
     // Methods
 
-    getNavitaionItems() {
-        return navItems;
+    getHeroUnit() {
+        return heroUnit;
     }
 
     // Listeners
@@ -56,4 +56,4 @@ class NavigationStore {
 
 }
 
-export default new NavigationStore();
+export default new HeroStore();

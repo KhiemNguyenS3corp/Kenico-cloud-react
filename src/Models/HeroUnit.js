@@ -7,8 +7,8 @@ export class HeroUnit extends ContentItem {
         super({
             propertyResolver: ((fieldName) => {
                 
-                if (fieldName === 'marketing_message'){
-                    return 'marketingMessage';
+                if (fieldName === 'title'){
+                    return 'title';
                 }
 
             }),

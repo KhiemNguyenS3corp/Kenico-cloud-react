@@ -45,11 +45,13 @@ function isPreview() {
   return previewApiKey !== "";
 }
 
+
 export default new DeliveryClient(
   new DeliveryClientConfig(projectId, typeResolvers,
     {
       enablePreviewMode: isPreview(),
-      previewApiKey: previewApiKey
+      previewApiKey: previewApiKey,
+      defaultLanguage: 'en-US'
     }
   )
 )
